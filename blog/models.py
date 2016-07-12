@@ -18,4 +18,3 @@ class Post(models.Model):
         help_text='경도,위도 포맷으로 입력')
     created_at = models.DateTimeField(default=timezone.now)
     test_field = models.IntegerField(default=10)
- 
