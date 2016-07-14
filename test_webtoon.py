@@ -12,6 +12,8 @@ from bs4 import BeautifulSoup
 def main():
     url_set = { ep.url for ep in Episode.objects.all() }
 
+    episode_list = []
+
     for page in range(1, 10000):
         params = {
             'titleId': 641253,
@@ -26,12 +28,18 @@ def main():
 
             if link in url_set:
                 print('End!')
-                return
+                return episode_list
 
             url_set.add(link)
 
             print(title, link)
-            Episode.objects.create(title=title, url=link)
+            episode_list.append(Episode(title=title, url=link))
 
 if __name__ == '__main__':
-    main()
+    from django.db import connection
+
+    episode_list = main()
+    Episode.objects.bulk_create(episode_list)
+
+    for idx, query in enumerate(connection.queries, 1):
+        print(idx, query)
