@@ -10,6 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 
 def main():
+    url_set = { ep.url for ep in Episode.objects.all() }
+
     for page in range(1, 10000):
         params = {
             'titleId': 641253,
@@ -22,9 +24,11 @@ def main():
             title = a_tag.text
             link = urljoin(page_url, a_tag['href'])
 
-            if Episode.objects.filter(url=link).exists():
+            if link in url_set:
                 print('End!')
                 return
+
+            url_set.add(link)
 
             print(title, link)
             Episode.objects.create(title=title, url=link)
