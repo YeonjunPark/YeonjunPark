@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'debug_toolbar',
-    'webtoon'
+    'webtoon',
+    'poketmongo',
 ]
 
 MIDDLEWARE_CLASSES = [
