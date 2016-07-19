@@ -23,11 +23,16 @@ class User(models.Model):
     email = models.EmailField(blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Poketmon(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length=50)
     level = models.PositiveSmallIntegerField(default=1, null=False)
-    location = models.CharField(max_length=100)
 
-
+class Capture(models.Model):
+    user = models.ForeignKey(User)
+    poketmon = models.ForeignKey(Poketmon)
+    location = models.CharField(max_length = 100)
