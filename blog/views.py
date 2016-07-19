@@ -7,7 +7,7 @@ def post_list(request):
 def self_introduction(request):
     return render(request, 'blog/self_introduction.html', {})
 
-def mysum(request, x, y=0, z=0):
-    return HttpResponse(int(x) + int(y) + int(z))
+def mysum(request, x):
+    return HttpResponse(sum(int(i) for i in x.split('/') if i))
 
 
