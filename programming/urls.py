@@ -23,6 +23,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.post_list),
     url(r'^self/', views.self_introduction),
+    url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/(?P<z>\d+)/$', views.mysum),
+    url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/$', views.mysum),
+    url(r'^sum/(?P<x>\d+)/$', views.mysum),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

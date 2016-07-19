@@ -32,7 +32,13 @@ class Poketmon(models.Model):
     name = models.CharField(max_length=50)
     level = models.PositiveSmallIntegerField(default=1, null=False)
 
+    def __str__(self):
+        return self.name
+
 class Capture(models.Model):
     user = models.ForeignKey(User)
     poketmon = models.ForeignKey(Poketmon)
     location = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.name
