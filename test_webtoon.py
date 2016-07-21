@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 def main():
     url_set = { ep.url for ep in Episode.objects.all() }
-
+        
     episode_list = []
 
     for page in range(1, 10000):
