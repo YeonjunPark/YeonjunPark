@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 def main():
     url_set = { ep.url for ep in Episode.objects.all() }
-        
+
     episode_list = []
 
     for page in range(1, 10000):
@@ -19,11 +19,13 @@ def main():
             'titleId': 641253,
             'page': page,
         }
+
         page_url = 'http://comic.naver.com/webtoon/list.nhn'
         html = requests.get(page_url, params=params).text
         soup = BeautifulSoup(html, 'html.parser')
         for a_tag in soup.select('.viewList .title a'):
             title = a_tag.text
+            # print(html)
             link = urljoin(page_url, a_tag['href'])
 
             if link in url_set:

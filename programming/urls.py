@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from blog import views
+from poketmongo import views as poketmongo_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.post_list),
     url(r'^self/', views.self_introduction),
+    url(r'^poketmon/$', poketmongo_views.poketmon_list),
     url(r'^sum/(?P<x>[\d/]+)/$', views.mysum),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
