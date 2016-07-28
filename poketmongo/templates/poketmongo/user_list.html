@@ -1,0 +1,25 @@
+{% extends 'poketmongo/base.html' %}
+
+{% block content %}
+
+<h1>포켓몬고 유저들 목록</h1>
+<form action="" method="post">{% csrf_token %}
+<table border="2">
+    <thead>
+        <tr>
+            <th>이름</th>   <th>성별</th>   <th>나이</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        {% for user in user_list %}
+            <td><a href="{% url 'poketmongo:user_detail' user.name %}"</td>  <td>{{ user.sex }}</td>     <td>{{ user.age }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>총 유저 수</td>      <td colspan="2">{{ user_list|length }}</td>
+        </tr>
+
+{% endblock %}
