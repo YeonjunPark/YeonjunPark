@@ -1,7 +1,12 @@
-import re
+import re, sqlite3
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'programming.settings')
 from django.forms import ValidationError
 from django.core.validators import MinLengthValidator
 from django.utils.deconstruct import deconstructible
+import sys
+from poketmongo.models import Zipcode
+
 
 @deconstructible
 class MinLengthValidator(object):
@@ -23,6 +28,8 @@ def zip_code_validator(zip_code):
     if not re.match(r'^\d{3}-\d{3}$', zip_code):
         if not re.match(r'^\d{5}$', zip_code):
             raise ValidationError('우편번호를 입력해주세요.')
+    if not Zipcode.objects.filter(zipcode=zip_code).exists():
+        raise ValidationError('존재하는 우편번호가 아닙니다.')
 
 def lnglat_validator(lnglat):
     if not re.match(r'^(\d+\.?\d*),(\d+\.?\d*)$', lnglat):

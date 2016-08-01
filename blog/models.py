@@ -3,7 +3,7 @@ from django.db import models
 from django.forms import ValidationError
 from django.utils import timezone
 from .validators import MinLengthValidator, lnglat_validator
-from .fields import PhoneNumberField
+from .fields import PhoneNumberField, ZipCodeField
 
 
 '''
@@ -63,8 +63,11 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
+class Zipcode(models.Model):
+    zipcode = ZipCodeField()
 
-
+    def __str__(self):
+        return self.zipcode
 
 
 

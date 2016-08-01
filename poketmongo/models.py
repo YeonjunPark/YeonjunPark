@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+# from blog.fields import ZipCodeField
 
 class User(models.Model):
     male ='M'
@@ -42,3 +43,9 @@ class Capture(models.Model):
 
     def __str__(self):
         return self.name
+
+class Zipcode(models.Model):
+    zipcode = models.CharField(max_length=7)
+
+    def __str__(self):
+        return self.zipcode
