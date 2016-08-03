@@ -1,4 +1,4 @@
-import re, sqlite3
+import re
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'programming.settings')
 import requests
@@ -6,7 +6,6 @@ from django.forms import ValidationError
 from django.conf import settings
 from django.core.validators import MinLengthValidator
 from django.utils.deconstruct import deconstructible
-import sys
 from poketmongo.models import Zipcode
 import xmltodict
 
@@ -22,7 +21,6 @@ class MinLengthValidator(object):
 def phone_number_validator(value):
     '휴대폰 번호를 검사하는 Validator'
     if not re.match(r'^01[016789][1-9]\d{6,7}$', value):
-        # if not re.match(r'^\d$', value):
         raise ValidationError('휴대폰 번호를 입력해주세요.')
 
 def zip_code_validator(zip_code):

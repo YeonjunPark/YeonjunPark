@@ -2,7 +2,7 @@ import re
 from django.db import models
 from django.forms import ValidationError
 from django.utils import timezone
-from .validators import MinLengthValidator, lnglat_validator
+from .validators import MinLengthValidator, lnglat_validator, ZipCodeValidator
 from .fields import PhoneNumberField, ZipCodeField
 
 
@@ -40,7 +40,7 @@ class Post(models.Model):
     tag_set = models.ManyToManyField('Tag', blank=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class Comment(models.Model):
     post = models.ForeignKey('Post')
@@ -57,7 +57,7 @@ class Tag(models.Model):
         return self.name
 
 class Contact(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, validators=[ZipCodeValidator(True)])
     phone_number = PhoneNumberField()
 
     def __str__(self):
