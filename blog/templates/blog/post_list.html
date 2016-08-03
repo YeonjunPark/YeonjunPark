@@ -1,7 +1,23 @@
 {% extends 'blog/base.html' %}
 
+{% block css %}
+span.title{
+    font-size:1.5em;
+}
+{% endblock %}
+
 {% block content %}
 
-<h1>블로그 게시판</h1>
+<h1>블로그 목록</h1>
+{% for post in post_list %}
+    <a href="{% url 'blog:post_detail' post.pk %}" >
+    <ul>
+        <li>
+      <span class='title'> {{ post.title }}</span></a> / 생성일시 : {{ post.created_at }}
+        </li>
+    </ul>
+
+{% endfor %}
+
 
 {% endblock %}

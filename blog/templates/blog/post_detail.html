@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h1>게시물 이름 : {{ post.title }}</h1>
+<div id="post_content">
+    {{ post.content }}
+</div><hr/>
+
+{% for comment in comment_list %}
+    <li>
+    <h4> {{ comment.author }} : {{ comment.message }} </h4>
+    작성일시 : {{ comment.created_at }}
+    </li>
+{% endfor %}
+
+
+{% endblock %}

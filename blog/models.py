@@ -31,11 +31,11 @@ def max_length_validator(max_length):
 class Post(models.Model):
     title = models.CharField(max_length=100, validators=[MinLengthValidator(4)], verbose_name='제목')
     content = models.TextField(help_text='Markdown 문법을 써주세요.', validators=[MinLengthValidator(10)])
-    tags = models.CharField(max_length=100, blank=True)
+    # tags = models.CharField(max_length=100, blank=True)
     lnglat = models.CharField(max_length=50,
         validators=[lnglat_validator],
         help_text='경도,위도 포맷으로 입력')
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     test_field = models.IntegerField(default=10)
     tag_set = models.ManyToManyField('Tag', blank=True)
 
@@ -46,6 +46,7 @@ class Comment(models.Model):
     post = models.ForeignKey('Post')
     message = models.TextField()
     author = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.message
