@@ -27,7 +27,10 @@ def main():
             title = a_tag.text
             # print(html)
             link = urljoin(page_url, a_tag['href'])
-
+            print(page_url)
+            print(a_tag['href'])
+            print(link)
+            1/0
             if link in url_set:
                 print('End!')
                 return episode_list

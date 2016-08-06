@@ -1,4 +1,5 @@
 import re
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.forms import ValidationError
 from django.utils import timezone
@@ -38,6 +39,9 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     test_field = models.IntegerField(default=10)
     tag_set = models.ManyToManyField('Tag', blank=True)
+
+    def get_absolute_url(self):
+       return reverse('blog:post_detail', args=[self.pk])
 
     def __str__(self):
         return self.title

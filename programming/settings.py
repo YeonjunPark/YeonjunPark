@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
     'blog',
     'debug_toolbar',
     'webtoon',
@@ -122,7 +123,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from django.contrib.messages import constants as messages_constants
+MESSAGE_TAGS = {messages_constants.ERROR: 'danger'}
+MESSAGE_LEVEL = messages_constants.INFO
+STATIC_URL = '/static/'
+
+EPOST_API_KEY = '4315602ea6a417fc91470021525690'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

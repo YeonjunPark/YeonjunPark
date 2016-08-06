@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
@@ -22,9 +22,9 @@ from poketmongo import views as poketmongo_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.post_list),
-    url(r'^self/', views.self_introduction),
-    url(r'^poketmon/$', poketmongo_views.poketmon_list),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^self/$', views.self_introduction),
+    url(r'^poketmon/', poketmongo_views.poketmon_list),
     url(r'^sum/(?P<x>[\d/]+)/$', views.mysum),
     url(r'^users/$', poketmongo_views.user_list),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

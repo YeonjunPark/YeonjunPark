@@ -1,18 +1,32 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}
+
+{{ post.title }}
+
+{% endblock %}
+
 {% block content %}
 
 <h1>게시물 이름 : {{ post.title }}</h1>
 <div id="post_content">
-    {{ post.content }}
+    {{ post.content|linebreaks }}
 </div><hr/>
-
-{% for comment in comment_list %}
-    <li>
-    <h4> {{ comment.author }} : {{ comment.message }} </h4>
-    작성일시 : {{ comment.created_at }}
-    </li>
-{% endfor %}
-
+<a href="{% url 'blog:comment_new' post.pk %}">
+댓글쓰기
+</a>
+<dlv>
+    <ul>
+    {% for comment in post.comment_set.all %}
+        <li>
+        <h4> {{ comment.author }} : {{ comment.message }} </h4>
+        작성일시 : {{ comment.created_at }}
+        </li>
+         <a href="{% url 'blog:comment_edit' post.pk comment.pk %}">수정</a>
+    {% empty %}
+        <li> 첫번째 댓글의 주인공이 되어주세요.</li>
+    {% endfor %}
+    </ul>
+</dlv>
 
 {% endblock %}
