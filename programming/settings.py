@@ -122,6 +122,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
+# 장고에서 정적인 파일의 종류는 두 가지이다.
+# 하나는 STATIC 파일, 다른 하나는 MEDIA파일이다. STATIC은 개발리소스로서 들어간 파일. MEDIA는 유저가 업로드한 모든 파일.
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

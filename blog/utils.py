@@ -44,7 +44,7 @@ def thumbnail(input_f, width, height, quality=80):
 def square_image(input_f, max_size, quality=80):
     image, format = pil_image(input_f, quality)
     max_size = min(image.size[0], image.size[1], max_size)
-    image = ImageOps.fit(image, size=(max_size, max_size))
+    image = ImageOps.fit(image, size=(max_size, max_size)) # fit method는 이미지 상에서 원하는 위치를 지정하는 것. 왼쪽 가운데 위 등.
     return image_to_file(image, format, quality)
 
 
