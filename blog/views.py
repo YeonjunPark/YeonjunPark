@@ -37,7 +37,7 @@ def comment_new(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
 
     if request.method == 'POST':
-        form = CommentModelForm(request.POST, request.FILES)
+        form = CommentModelForm(request.POST, request.FILES) # 파일 업로드 받을 때에는 필히 request.FILES 지정하기 !!!
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post

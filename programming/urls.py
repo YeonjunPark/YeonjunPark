@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
 from blog import views
 from poketmongo import views as poketmongo_views
 
@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^poketmon/', poketmongo_views.poketmon_list),
     url(r'^sum/(?P<x>[\d/]+)/$', views.mysum),
     url(r'^users/$', poketmongo_views.user_list),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

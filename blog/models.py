@@ -58,6 +58,7 @@ class Comment(models.Model):
     post = models.ForeignKey('Post')
     message = models.TextField()
     author = models.CharField(max_length=20)
+    jjal = models.ImageField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

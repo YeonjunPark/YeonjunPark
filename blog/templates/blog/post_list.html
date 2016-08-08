@@ -16,10 +16,14 @@ Post_list
 
 <h1>블로그 목록</h1>
 {% for post in post_list %}
-    <a href="{% url 'blog:post_detail' post.pk %}" >
-    <ul><!-- Unordered lost -->
+
+    <ul><!-- Unordered list -->
         <li>
-      <span class='title'> {{ post.title }} </span></a> / 생성일시 : {{ post.created_at }}
+        <a href="{% url 'blog:post_detail' post.pk %}" >
+        {% if post.photo %}
+            <img src="{{ post.photo.url }}" style="width: 75px; height: 75px;" />
+        {% endif %}
+        <span class='title'> {{ post.title }} </span></a> / 생성일시 : {{ post.created_at }}
         </li>
     </ul>
 
