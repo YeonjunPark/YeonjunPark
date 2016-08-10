@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'webtoon',
     'poketmongo',
+    'accounts',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^poketmon/', poketmongo_views.poketmon_list),
     url(r'^sum/(?P<x>[\d/]+)/$', views.mysum),
     url(r'^users/$', poketmongo_views.user_list),
+    url(r'^accounts/', include('accounts.urls')),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
