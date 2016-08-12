@@ -1,6 +1,7 @@
 import re, os
 from uuid import uuid4
 from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.db import models
 from django.forms import ValidationError
 from django.utils import timezone
@@ -62,7 +63,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey('Post')
     message = models.TextField()
-    author = models.CharField(max_length=20)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     jjal = models.ImageField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

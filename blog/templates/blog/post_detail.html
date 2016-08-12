@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
 <h1>게시물 이름 : {{ post.title }}</h1>
 <div id="post_content">
     {{ post.content|linebreaks }}
@@ -31,13 +30,13 @@
     </ul>
     </dlv>
 </dlv>
-<div>
+<div class=>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {% bootstrap_form comment_form layout='inline' %}
         </table>
-        <input type="submit" value="등록" />
+        <input type="submit" class="btn btn-primary" value="등록" />
     </form>
 </div>
 
